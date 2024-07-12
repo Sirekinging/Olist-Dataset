@@ -4,7 +4,7 @@ Read more about the Data Source here :-
 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist
 
-The relationship between the tables in the database is provided in the image (link) below.
+The relationship between the tables in the database is provided in the image below.
 ![download](https://github.com/user-attachments/assets/c9ae9eac-1e07-46fc-bb3d-a7401f327c1a)
 
 
