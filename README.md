@@ -17,36 +17,41 @@ Here are my "KEY TAKEAWAYS"
 
 * Most of the city columns in the customers, sellers and geolocation table were filled with special characters á, é, í, ó, ú, â, ê, ô, ã, õ, à, and ç which was substituted for english alphabets while cleaning. Some cities also contain state name abbrevations which was removed as well.
 
+
 * The top 5 customer's state with the most orders are
-    - SP(41746)
-    - RJ(12852)
-    - MG(11635)
-    - RS(5466)
-    - PR(5045)
+    - SP (41746)
+    - RJ (12852)
+    - MG (11635)
+    - RS (5466)
+    - PR (5045)
+
 
 
 * The top 5 customer's state with the least orders are
-    - RR(46)
-    - AP(68)
-    - AC(81)
-    - AM(148)
-    - RO(253)
+    - RR (46)
+    - AP (68)
+    - AC (81)
+    - AM (148)
+    - RO (253)
+
 
 * The top 10 customer cities with the most orders are
-    - sao paulo(15540)
-    - rio de Janeiro(6882)
-    - belo horizonte(2773)
-    - brasilia(2131)
-    - curitiba(1521)
-    - campinas(1444)
-    - porto alegre(1379)
-    - salvador(1245)
-    - guarulhos(1189)
-    - sao bernardo do campo(938)
+    - sao paulo (15540)
+    - rio de Janeiro (6882)
+    - belo horizonte (2773)
+    - brasilia (2131)
+    - curitiba (1521)
+    - campinas (1444)
+    - porto alegre (1379)
+    - salvador (1245)
+    - guarulhos (1189)
+    - sao bernardo do campo (938)
       
+
 
  * The customer cities with the least orders 
     - Out of 4113 cities, customers from 4091 cities has less than 500 orders.
+
 
   
  * The top 5 landing page's ID that attracts potential visitor sellers are
@@ -56,9 +61,11 @@ Here are my "KEY TAKEAWAYS"
      - 88740e65d5d6b056e0cda098e1ea6313 (445 visits)
      - ce1a65abd0973638f1c887a6efcfa82d (394 visits)
 
+
   
  * The landing page's ID that attracts least potential visitor sellers
      - 247 landing pages have only one visit.
+
 
   
  * Source of Visits to landing pages
@@ -66,9 +73,11 @@ Here are my "KEY TAKEAWAYS"
        over half of potential visitor sellers
 
 
+
   * The potential Visitor Seller's visit per year is
       - 2017 (2002 visits)
       - 2018 (5998 visits)
+
 
 
   * The Closed Seller's visit source are
@@ -82,14 +91,18 @@ Here are my "KEY TAKEAWAYS"
       - unknown_origin (14)
       - display (6)
 
+
    
   * June and December 2017 has significant low visits from potential sellers.
+
 
     
   * There are 842 closed sellers from the landing page (qualified)
 
 
+
   * Only 380 sellers out were registered from the 842 closed (in the sellers table).
+
 
     
   * 22 sales representative handled all 842 closed sellers, 18 were able to convince 380
@@ -99,16 +112,20 @@ Here are my "KEY TAKEAWAYS"
       - b90f87164b5f8c2cfa5c8572834dbe3f
       - 6aa3b86a83d784b05f0e37e26b20860d
 
+
    
   * Most of the orders whose approval is less than 6 days were delivered successfully.
+
 
     
   * There were 99441 distinct orders, 96478 were delivered successfully and 2963 weren't.
 
 
+
   * There was a huge spike of orders in november 2017, this may be due to the fact that
     peopole are preparing for christmas season, which is a month ahead, the largest order
     came in on november 24th (1176 orders).
+
 
 
   * The top 10 category where items/products were delivered successfully are
@@ -124,6 +141,7 @@ Here are my "KEY TAKEAWAYS"
       - auto (4140)
 
 
+
   * The least 10 category where items/products were delivered successfully are
       - security_and_services (2)
       - fashion_childrens_clothes (7)
@@ -136,10 +154,12 @@ Here are my "KEY TAKEAWAYS"
       - diapers_and_hygiene (37)
       - furniture_mattress_and_upholstery (37)
 
+
    
   * Out of 74 product category, 1 category is unknown, 2 (pc_gamer and
     portateis_cozinha_e_preparadores_de_alimentos) has no english translated name, and 71
     categories are properly named. This means 3 categories has no english translaltion.
+
 
 
   * The top 5 most expensive product category by price and freight value are
@@ -150,6 +170,7 @@ Here are my "KEY TAKEAWAYS"
       - computers_accessories (1059272.4)
 
 
+
   * The least 5 product category by price and freight value are
       - security_and_services (324.51)
       - fashion_childrens_clothes (665.36)
@@ -157,15 +178,18 @@ Here are my "KEY TAKEAWAYS"
       - home_comfort_2 (1170.58)
       - flowers (1598.91)
 
+
     
   * The least expensive item in all categories is
       - prodcut_id (adc48fd26eea311ca6856b58dfc3ca21), housewares category
         price (6.08)
 
 
+
   * The most expensive item in all categories is
       - prodcut_id (489ae2aa008f021502940f251d4cce7f), housewares category
         price (6929.31)
+
 
     
   * The Top 10 most amount spent per category where orders were delvered successfully are
@@ -181,6 +205,7 @@ Here are my "KEY TAKEAWAYS"
       - garden_tools (567145.68)
 
 
+
   * The Top 10 least amount spent per category where orders were delvered successfully are
       - security_and_services (324.51)
       - fashion_childrens_clothes (598.67)
@@ -193,8 +218,10 @@ Here are my "KEY TAKEAWAYS"
       - la_cuisine (2388.54)
       - fashion_sport (2657.55)
 
+
    
   * No customer placed more than one order.
+
 
 
   * The most used payment methods are as follows
@@ -203,11 +230,15 @@ Here are my "KEY TAKEAWAYS"
       - voucher (5493) and
       - debit_card (1486)
 
+
    
   * For all the 72 product category delivered, they all have positive reviews greater
     than their negative reviews except for security_and_services category, which has 1
     positive review and also only one negative review.
     2 categories (cds_dvds_musicals and fashion_childrens_clothes) has no negative review.
+
+
+
 
 LIMITATIONS - I COULD NOT CREATE STORED PROCEDURES AND FUCTIONS BECAUSE IT IS AN SQLITE FILE.
 
