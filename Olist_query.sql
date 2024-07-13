@@ -33,6 +33,7 @@ SELECT 'customer_state', COUNT(*)
 FROM customers
 WHERE   customer_state IS NULL;
 
+
 -- Aii) CUSTOMERS TABLE DUPICATES VALUES
 
 SELECT  customer_id, customer_unique_id, customer_zip_code_prefix,
@@ -45,6 +46,8 @@ GROUP BY    customer_id, customer_unique_id, customer_zip_code_prefix,
 HAVING COUNT(*) > 1;
 
 /** No duplicates and nulls in customers table **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 -- Bi) GEOLOCATION TABLE NULL VALUES
 
@@ -78,6 +81,8 @@ WHERE   geolocation_state IS NULL;
 
 /** No nulls in geolocation **/
 
+
+
 -- Bii) GEOLOCATION TABLE DUPLICATE VALUES
 
 SELECT  geolocation_zip_code_prefix, geolocation_lat,
@@ -89,6 +94,7 @@ GROUP BY    geolocation_zip_code_prefix, geolocation_lat,
 HAVING COUNT(*) > 1;
 
 -- Since there are numerous duplicates, we can remove by 
+
 
 -- biii) Removing geolocation duplicates and storing it as a "CTE" (new_geolocation)
 
@@ -103,6 +109,8 @@ ORDER BY geolocation_zip_code_prefix
 
 SELECT *
 FROM new_geolocation;
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- Ci) LEADS_CLOSED TABLE NULL VALUES
 
@@ -191,6 +199,8 @@ ORDER BY number_of_nulls ;
 
 /** SIGNIFICANT NULL VALUES IN leads_closed **/
 
+
+
 -- Cii) LEADS_CLOSED TABLE DUPLICATES
 
 SELECT  mql_id, seller_id, sdr_id, sr_id, won_date,
@@ -208,6 +218,8 @@ GROUP BY mql_id, seller_id, sdr_id, sr_id, won_date,
 HAVING COUNT(*) > 1;
 
 /** No duplicates in this table. **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 -- Di) LEADS_QUALIFIED TABLE NULL VALUES
 
@@ -243,6 +255,10 @@ FROM leads_qualified
 GROUP BY mql_id, first_contact_date, landing_page_id, origin
 HAVING COUNT(*) > 1;
 
+/** no duplicates in leads_qualified **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 -- Ei) SELLERS TABLE NULL VALUES
 
 SELECT 'seller_id' AS column_name, COUNT(*) AS number_of_nulls
@@ -276,6 +292,8 @@ GROUP BY seller_id, seller_zip_code_prefix, seller_city, seller_state
 HAVING COUNT(*) > 1;
 
 /** No null or duplicate values in SELLERS TABLE **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 -- Fi) PRODUCTS TABLE NULL VALUES
 
@@ -349,6 +367,9 @@ GROUP BY product_id, product_category_name, product_name_lenght,
 HAVING COUNT(*) > 1;
 
 /** All products are unique, no duplicate product. **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -- Gi) ORDERS TABLE NULL VALUES
 
@@ -416,6 +437,8 @@ GROUP BY order_id, customer_id, order_status,
 HAVING COUNT(*) > 1;
 
 /** NO duplicate orders in this table **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 -- Hi) ORDER_ITEMS NULL VALUES
 
@@ -474,6 +497,9 @@ HAVING COUNT(*) > 1
 ORDER BY number_of_duplicates;
 
 /** No duplicate order_items **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -- Ii) ORDER_PAYMENTS NULL VALUES
 
@@ -518,6 +544,9 @@ HAVING COUNT(*) > 1
 ORDER BY number_of_duplicates;
 
 /** No null or duplicates on this table **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -- Ji) ORDER REVIEWS NULL VALUES
 
@@ -578,6 +607,8 @@ HAVING COUNT(*) > 1
 ORDER BY number_of_duplicates;
 
 /** NO duplicate reviews, all reviews are unique. **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 -- Ki) PRODUCT CATEGORY NAME TRANSLATION NULL VALUES
@@ -605,6 +636,7 @@ HAVING COUNT(*) > 1
 ORDER BY number_of_duplicates;
 
 /** No null or duplicate values on this table. **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -758,6 +790,7 @@ ORDER BY geolocation_city;
 
 /** NOTE:- THERE ARE SOME CITIES WITH THE SAME STATE NAME, THIS IS WHY I CHOOSE THESE PARTICULAR STATES. **/
 
+
 --- CLEANING THE RESULT
 
 UPDATE geolocation_real
@@ -857,6 +890,9 @@ DROP TABLE no_duplicates_geolocation;
 DROP TABLE geolocation_real;
 
 /** NOTE - THERE ARE 1000163 records in the geolocation table after removing the duplicates and correcting the city column properly. There are now 720400 records. **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
  
 
 --	CLEANING SPECIAL CHARACTERS IN SELLERS TABLE (CITY COLUMN)
@@ -990,6 +1026,7 @@ WHERE seller_city = 04482255;
 
 UPDATE sellers_real
 SET seller_city = TRIM(seller_city);
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1067,8 +1104,7 @@ UPDATE customers_real
 SET customer_city = TRIM(customer_city);
 
 DROP TABLE real_customers; /** NOTE - TO REMOVE TEMP. TABLE CREATED. **/
-
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1090,6 +1126,7 @@ SELECT COUNT(DISTINCT(geolocation_city)) AS total_cities
 FROM geolocation;
 
 -- TOTAL STATES - 8011
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 --- SELLERS
@@ -1103,6 +1140,9 @@ SELECT COUNT(DISTINCT(seller_city)) AS total_cities
 FROM sellers;
 
 -- TOTAL SELLER CITIES - 611
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 --- CUSTOMERS
 SELECT COUNT(DISTINCT(customer_state)) AS total_states
@@ -1116,6 +1156,9 @@ FROM customers;
 -- TOTAL CUSTOMER CITIES - 4119
 
 /** I will be using geolocation_new, customers_real, and sellers_real to query because it contains edited clean data values. **/ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -- GEOLOCATION_NEW
 
@@ -1128,6 +1171,9 @@ SELECT COUNT(DISTINCT(geolocation_city)) AS total_cities
 FROM geolocation_new;
 
 -- TOTAL CITIES - 5887
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -- SELLERS_REAL
  
@@ -1140,6 +1186,8 @@ SELECT COUNT(DISTINCT(seller_city)) AS total_cities
 FROM sellers_real;
 
 -- TOTAL SELLER CITIES - 589
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 
 -- CUSTOMERS_REAL
@@ -1153,6 +1201,7 @@ SELECT COUNT(DISTINCT(customer_city)) AS total_cities
 FROM customers_real;
 
 -- TOTAL CUSTOMER CITIES - 4113
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1168,6 +1217,7 @@ ORDER BY number_of_orders DESC
 LIMIT 5;
 
 -- ANS - SP(41746), RJ(12852), MG(11635), RS(5466), PR(5045)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1183,6 +1233,7 @@ ORDER BY number_of_orders ASC
 LIMIT 5;
 
 -- ANS - RR(46), AP(68), AC(81), AM(148), RO(253)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1200,6 +1251,7 @@ LIMIT 10;
 /** ANS - 	sao paulo(15540), rio de Janeiro(6882), belo horizonte(2773),
 	brasilia(2131), curitiba(1521), campinas(1444), porto alegre(1379),
 	Salvador(1245), Guarulhos(1189), sao bernardo do campo(938) **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1214,6 +1266,7 @@ GROUP BY c.customer_city
 HAVING number_of_orders < 500;
 
 -- Out of 4113 cities, customers from 4091 cities has less than 500 orders. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  
 
@@ -1230,6 +1283,7 @@ LIMIT 5;
 - 58326e62183c14b0c03085c33b9fdc44 (495 visits)
 - 88740e65d5d6b056e0cda098e1ea6313 (445 visits)
 - ce1a65abd0973638f1c887a6efcfa82d (394 visits) **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1243,6 +1297,7 @@ HAVING no_of_visits < 2
 ORDER BY no_of_visits ASC;
 
 -- ANS - 247 landing pages have only one visit.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1255,6 +1310,7 @@ GROUP BY origin
 order by visits_per_origin DESC;
 
 /** Sellers from organic_search, paid_search, social and unknown source constitutes to over half of potential visitor sellers **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1269,6 +1325,7 @@ GROUP BY year;
 /** 2017 - 2002 visits
 2018 - 5998 visits
 A significant increase, twice more than the previous year 2017 **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1285,6 +1342,7 @@ ORDER BY closed_sellers DESC;
 /** ANS - 	organic_search (271), paid_search (195), unknown (179), social (75)
 	direct_traffic (56), referral (24), email (15), unknown_origin (14),
 	display (6) **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1298,6 +1356,7 @@ GROUP BY month
 ORDER BY year DESC;
 
 -- June and December 2017 has significant low visits. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1307,6 +1366,7 @@ SELECT  DISTINCT(seller_id)
 FROM leads_closed;
 
 -- ANS - 842 closed sellers
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1320,6 +1380,7 @@ JOIN sellers_real sr
         ON lc.seller_id = sr.seller_id;
 
 -- ANS - Only 380 registered sellers out of 842 closed.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1355,6 +1416,7 @@ WHERE sr_id NOT IN (SELECT DISTINCT(sr_id)
 - 9749123c950bf8363ace42cb1c2d0815
 - b90f87164b5f8c2cfa5c8572834dbe3f
 - 6aa3b86a83d784b05f0e37e26b20860d **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1370,6 +1432,7 @@ WHERE order_status = 'delivered'
 ORDER BY approval_duration DESC;
 
 -- Most of the orders whose approval is less than 6 days were delivered successfully.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1406,6 +1469,9 @@ ORDER BY process_count desc;
 - 301 is still in processing
 - 5 has just been created
 - and 2 has just been approved. **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -- Aiv) ORDER PER DAY
 
@@ -1415,6 +1481,9 @@ GROUP BY strftime('%Y-%m-%d', order_purchase_timestamp)
 ORDER BY no_of_orders_daily DESC;
 
 /** ANS - THERE WAS A HUGE SPIKE OF ORDERS IN NOVEMBER 2017, THIS MAY BE DUE TO THE FACT THAT PEOPLE ARE PREPARING FOR XMAS A MONTH AHEAD, THE LARGEST ORDER CAME IN ON NOVEMBER 24TH (1176). **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -- Av) ORDER BY CATEGORY
 
@@ -1440,6 +1509,9 @@ LIMIT 10;
 	furniture_decor (8160), computers_accessories (7644), housewares (6795),
 	watches_gifts (5859), telephony (4430), garden_tools (4268),
 	auto (4140) **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -- LEAST 10 ORDERS BY CATEGORY WHERE ITEMS WERE DELIVERED SUCCESSFULLY 
 
@@ -1461,6 +1533,9 @@ LIMIT 10;
 /** ANS - 	security_and_services (2), fashion_childrens_clothes (7), cds_dvds_musicals (14),
 	la_cuisine (14), arts_and_craftmanship (24), fashion_sport (29),
 	home_comfort_2 (30), flowers (33), diapers_and_hygiene (37), furniture_mattress_and_upholstery (37) **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 	
 
 
@@ -1485,6 +1560,7 @@ FROM updated_categories;
 /** OUT OF 74 PRODUCT CATEGORY, 1 CATEGORY IS UNKNOWN, 2(PC_GAMER AND portateis_cozinha_e_preparadores_de_alimentos) HAS NO ENGLISH TRANSLATED NAME , AND ONLY 71 CATEGORIES ARE PROPERLY NAMED. THIS MEANS 3 CATEGORIES HAS NO ENGLISH TRANSLATION. **/
 
 -- RECOMMENDATION -  The product_category_name_translation has to be updated
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1503,6 +1579,7 @@ ORDER BY total_by_category DESC
 LIMIT 5;
 
 -- ANS - 	health_beauty (1441248.07), watches_gifts (1305541.61), bed_bath_table (1241681.72), 	sports_leisure (1156656.48), computers_accessories (1059272.4)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1522,6 +1599,7 @@ LIMIT 5;
 
 /** ANS - 	security_and_services (324.51), fashion_childrens_clothes (665.36),
 	cds_dvds_musicals (954.99), home_comfort_2 (1170.58), flowers (1598.91) **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1538,6 +1616,7 @@ LEFT JOIN product_category_name_translation pc
 
 /** ANS -	prodcut_id (adc48fd26eea311ca6856b58dfc3ca21), housewares category
 	price (6.08) **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1555,6 +1634,7 @@ LEFT JOIN product_category_name_translation pc
 
 /** ANS - 	prodcut_id (489ae2aa008f021502940f251d4cce7f), housewares category
 	price (6929.31) **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1583,6 +1663,7 @@ LIMIT 10;
 
 /** NOTE - 	THE LIST HERE CORRESPONDS TO THE LIST IN 17(av), WE CAN SAY THERE IS A CORRELATION
 	BETWEEN ORDERS PLACED AND THE AMOUNT SPENT. CHECK CATEGORY WITH THE MOST ORDERS. **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1611,8 +1692,9 @@ LIMIT 10;
 	arts_and_craftmanship (2184.14), la_cuisine (2388.54), fashion_sport (2657.55)	**/
 
 
-/** NOTE - 	SAME GOES FOR THE LIST IN 17(av), EXCEPT THIS CATEGORY 	'furniture_mattress_and_upholstery' WHICH IS NOT ON THE LIST OF CATEGORY WITH THE 	LEAST ORDERS. WE CAN ALSO SAY THEIR IS A CORRELATION BETWEEN ORDERS AND AMOUNT 	SPENT. **/
-
+/** NOTE - SAME GOES FOR THE LIST IN 17(av), EXCEPT THIS CATEGORY 'furniture_mattress_and_upholstery' WHICH IS NOT ON THE LIST OF CATEGORY WITH THE LEAST ORDERS. 
+WE CAN ALSO SAY THEIR IS A CORRELATION BETWEEN ORDERS AND AMOUNT SPENT. **/
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1628,6 +1710,7 @@ ORDER BY no_of_orders DESC;
 -- NO CUSTOMER PLACED MORE THAN 1 ORDER. 
 
 -- RECOMMENDATION - PROMO/REWARDS SHOULD BE INITIATED TO PERSUED CUSTOMERS TO BY MORE THAN 1 ITEM.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1644,7 +1727,7 @@ ORDER BY payment_method DESC;
 
 /** ANS - 	credit_card (74586) is the most used, followed by
 	boleto (19191), voucher (5493) and debit_card (1486). **/
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1699,6 +1782,9 @@ WHERE o.order_status = 'delivered'
 GROUP BY pc.product_category_name_english 
 HAVING positive_reviews = negative_reviews
 ORDER BY positive_reviews DESC ;
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 -- Aii) CATEGORIES WITH NO NEGATIVE REVIEWS.
 
