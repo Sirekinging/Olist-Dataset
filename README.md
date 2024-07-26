@@ -187,7 +187,7 @@ Here are my "KEY TAKEAWAYS"
 
 
   * The most expensive item in all categories is
-      - prodcut_id (489ae2aa008f021502940f251d4cce7f), housewares category
+      - product_id (489ae2aa008f021502940f251d4cce7f), housewares category
         price (6929.31)
 
 
