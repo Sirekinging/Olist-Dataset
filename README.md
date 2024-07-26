@@ -181,7 +181,7 @@ Here are my "KEY TAKEAWAYS"
 
     
   * The least expensive item in all categories is
-      - prodcut_id (adc48fd26eea311ca6856b58dfc3ca21), housewares category
+      - product_id (adc48fd26eea311ca6856b58dfc3ca21), housewares category
         price (6.08)
 
 
