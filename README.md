@@ -1,5 +1,10 @@
 This is an SQLITE Database File of a Brazilian E-commerce website
 
+NOTE!!!!
+- Download File 1 and File 2 of the original dataset files to extract the original sqlite dataset (Olist original)
+- Download Edited_file 1, 2, 3 and 4 files to extract the edited olist sqlite dataset (This contains the new tables i created for query purposes)
+- Check Olist_query.sql file for Queries written to support my analysis.
+
 Read more about the Data Source here :-
 https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist
